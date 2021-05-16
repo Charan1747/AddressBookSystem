@@ -7,7 +7,7 @@ namespace AddressBookManagement_System
         int PinCode;
         long Phone_No;
         String first_name, last_name, address, city, state;
-        public void Enter()
+        public void Enter(Info contact)
         {
             Console.Write("Enter First Name: ");
             first_name = (Console.ReadLine());
@@ -32,10 +32,34 @@ namespace AddressBookManagement_System
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Contact Details Are ");
-            Program details = new Program();
-            details.Enter();
-            details.Show();
+            Console.WriteLine("Welcome to Address Book Program");
+            AddressBookBuilder addressbook = new AddressBookBuilder();
+            Program addressbooks = new Program();
+            int choice = 1;
+            while (choice != 3)
+            {
+                Console.WriteLine("Menu : \n 1.Add_Contact \n 2.Display_Contact \n 3.Exit ");
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Info contact = new Info();
+                        addressbooks.Enter(contact);
+                        addressbook.AddContact(contact);
+                        Console.WriteLine("Contact Added Successfully.");
+                        break;
+                    case 2:
+                        addressbook.Display_Contacts();
+                        break;
+                    case 3:
+                        Console.WriteLine("Program Exited");
+                        break;
+                    default:
+                        Console.WriteLine("Wrong input");
+                        break;
+                }
+
+            }
         }
     }
 }
